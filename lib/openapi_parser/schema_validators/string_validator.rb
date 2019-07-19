@@ -28,7 +28,7 @@ class OpenAPIParser::SchemaValidator
 
       # @param [OpenAPIParser::Schemas::Schema] schema
       def coerce_date_time(value, schema)
-        return parse_date_time(value, schema) if schema.format == 'date-time'
+        return parse_date_time(value, schema) if ['date-time', 'date'].include?(schema.format)
 
         [value, nil]
       end

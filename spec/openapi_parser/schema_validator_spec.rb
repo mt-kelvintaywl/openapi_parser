@@ -507,6 +507,20 @@ RSpec.describe OpenAPIParser::SchemaValidator do
         end
       end
 
+      context 'date' do
+        let(:params) { { 'date' => date_str, 'string' => 'str' } }
+        let(:request_path) { '/validate' }
+
+        let(:date_str) { '2016-04-01' }
+
+        it do
+          subject
+
+          expect(params['date'].class).to eq DateTime
+          expect(params['string'].class).to eq String
+        end
+      end
+
       context 'overwrite initialize option' do
         subject { request_operation.validate_request_body(content_type, params, options) }
 
